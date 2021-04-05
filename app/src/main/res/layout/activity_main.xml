@@ -1,18 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
     <TextView
+        android:id="@+id/quiz_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="80sp"
+        android:layout_marginStart="60sp"
+        android:textSize="25sp"
+        android:textColor="@color/black"
+        android:text="Ваше здоровье" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.filippudak.ProgressPieView.ProgressPieView
+        android:id="@+id/quiz_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:scaleX="2.5"
+        android:scaleY="2.5"
+        android:layout_marginEnd="60sp"
+        android:layout_marginTop="80sp"
+        app:ppvProgress="30"
+        app:ppvProgressColor="@color/green"
+        app:ppvStrokeColor="@color/dark_green"
+        android:text="3/10"
+        android:textSize="9sp"/>
+
+    <TextView
+        android:id="@+id/question_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/quiz_title"
+        android:layout_marginTop="100sp"
+        android:layout_marginStart="70sp"
+        android:layout_centerInParent="true"
+        android:textSize="26sp"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:text="Занимаетесь ли вы каким-либо спортом?"/>
+
+    <Button
+        android:id="@+id/button_yes"
+        android:layout_width="200sp"
+        android:layout_height="100sp"
+        android:layout_below="@+id/question_text"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="50sp"
+        android:text="Да"
+        android:textSize="30sp"/>
+
+    <Button
+        android:id="@+id/button_no"
+        android:layout_width="200sp"
+        android:layout_height="100sp"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/button_yes"
+        android:layout_marginTop="40sp"
+        android:text="Нет"
+        android:textSize="30sp"/>
+
+</android.widget.RelativeLayout>
