@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="360sp"
+    android:layout_gravity="center"
+    android:layout_height="match_parent"
+    tools:context=".QuizFeed">
+
+    <TextView
+        android:id="@+id/available_quiz"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20sp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="@string/available_quiz"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="26sp" />
+
+
+    <include layout="@layout/available_quiz_in_feed"  android:id="@+id/available_quiz_body"/>
+    
+    <View
+        android:id="@+id/divide_line"
+        android:layout_width="fill_parent"
+        android:layout_height="2sp"
+        android:layout_below="@+id/available_quiz_body"
+        android:layout_marginTop="30sp"
+        android:background="@color/black"
+        tools:ignore="SmallSp" />
+
+    <TextView
+        android:id="@+id/completed_quiz"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/divide_line"
+        android:layout_marginTop="30sp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="@string/completed_quiz"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="26sp" />
+
+    <include layout="@layout/completed_quiz_in_feed" android:id="@+id/completed_quiz_body"/>
+
+
+</RelativeLayout>

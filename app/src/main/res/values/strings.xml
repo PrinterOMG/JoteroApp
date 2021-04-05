@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">JoteroApp</string>
+    <string name="completed_quiz">Пройденные опросы</string>
+    <string name="available_quiz">Доступные опросы</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+</resources>
