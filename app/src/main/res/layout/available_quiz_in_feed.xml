@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/available_quiz_body"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="120sp"
     android:layout_below="@+id/available_quiz"
     android:layout_marginStart="40sp"
     android:layout_marginEnd="40sp"
