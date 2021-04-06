@@ -15,8 +15,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8sp"
         android:fontFamily="@font/montserrat_bold"
-        android:text="Название опроса"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        android:text="Название опроса" />
 
     <TextView
         android:id="@+id/available_quiz_data"

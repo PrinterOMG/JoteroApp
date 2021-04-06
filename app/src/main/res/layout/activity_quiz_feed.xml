@@ -20,7 +20,7 @@
 
 
     <include layout="@layout/available_quiz_in_feed"  android:id="@+id/available_quiz_body"/>
-    
+
     <View
         android:id="@+id/divide_line"
         android:layout_width="fill_parent"
