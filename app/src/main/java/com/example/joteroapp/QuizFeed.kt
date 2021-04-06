@@ -11,8 +11,7 @@ class QuizFeed : AppCompatActivity() {
         setContentView(R.layout.activity_quiz_feed)
 
         available_quiz_body.setOnClickListener {
-            val quizExampleIntent = Intent(this, MainActivity::class.java)
-            startActivity(quizExampleIntent)
+            finish()
         }
 
     }
