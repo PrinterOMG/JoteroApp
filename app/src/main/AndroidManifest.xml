@@ -18,13 +18,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
-
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-=======
->>>>>>> 4da92c40b669ed777943460e1d4e1b1f9967b23a
-    </application>
+</application>
 
 </manifest>
