@@ -11,11 +11,12 @@
         android:id="@+id/quiz_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80sp"
         android:layout_marginStart="60sp"
-        android:textSize="25sp"
+        android:layout_marginTop="80sp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Ваше здоровье"
         android:textColor="@color/black"
-        android:text="Ваше здоровье" />
+        android:textSize="25sp" />
 
 
     <com.filippudak.ProgressPieView.ProgressPieView
@@ -39,13 +40,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/quiz_title"
-        android:layout_marginTop="100sp"
-        android:layout_marginStart="70sp"
         android:layout_centerInParent="true"
-        android:textSize="26sp"
-        android:textColor="@color/black"
+        android:layout_marginStart="70sp"
+        android:layout_marginTop="100sp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Занимаетесь ли вы каким-либо спортом?"
         android:textAlignment="center"
-        android:text="Занимаетесь ли вы каким-либо спортом?"/>
+        android:textColor="@color/black"
+        android:textSize="26sp" />
 
     <Button
         android:id="@+id/button_yes"
@@ -54,18 +56,22 @@
         android:layout_below="@+id/question_text"
         android:layout_centerInParent="true"
         android:layout_marginTop="50sp"
+        android:background="@drawable/button_style"
+        android:fontFamily="@font/montserrat_bold"
         android:text="@string/yes"
-        android:textSize="30sp"/>
+        android:textSize="30sp" />
 
     <Button
         android:id="@+id/button_no"
         android:layout_width="200sp"
         android:layout_height="100sp"
-        android:layout_centerInParent="true"
         android:layout_below="@+id/button_yes"
+        android:layout_centerInParent="true"
         android:layout_marginTop="40sp"
+        android:background="@drawable/button_style"
+        android:fontFamily="@font/montserrat_bold"
         android:text="@string/no"
-        android:textSize="30sp"/>
+        android:textSize="30sp" />
 
     <Button
         android:id="@+id/button_to_quiz_feed"

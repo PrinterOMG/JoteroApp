@@ -19,7 +19,9 @@
         android:textSize="26sp" />
 
 
-    <include layout="@layout/available_quiz_in_feed"  android:id="@+id/available_quiz_body"/>
+    <include
+        android:id="@+id/available_quiz_body"
+        layout="@layout/available_quiz_in_feed" />
 
     <View
         android:id="@+id/divide_line"
@@ -43,6 +45,18 @@
         android:textSize="26sp" />
 
     <include layout="@layout/completed_quiz_in_feed" android:id="@+id/completed_quiz_body"/>
+
+    <TextView
+        android:id="@+id/no_available_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/available_quiz"
+        android:layout_marginTop="30sp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Нет доступных опросов"
+        android:textAlignment="center"
+        android:textSize="26sp"
+        android:visibility="invisible" />
 
 
 </RelativeLayout>
