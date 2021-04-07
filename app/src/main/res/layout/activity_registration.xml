@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_gravity="center"
+    android:layout_height="match_parent"
+    tools:context=".Registration">
+
+    <TextView
+        android:id="@+id/login_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:layout_marginTop="30sp"
+        android:textSize="30sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="@string/login_data"/>
+
+    <EditText
+        android:id="@+id/login_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/login_data"
+        android:layout_marginTop="15sp"
+        android:ems="8"
+        android:textSize="20sp"
+        android:fontFamily="@font/montserrat_bold"
+        android:hint="@string/login" />
+
+    <EditText
+        android:id="@+id/password_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="8"
+        android:textSize="20sp"
+        android:layout_below="@+id/login_input"
+        android:layout_marginTop="15sp"
+        android:layout_centerInParent="true"
+        android:fontFamily="@font/montserrat_bold"
+        android:hint="@string/password"/>
+
+    <View
+        android:id="@+id/divide_line_register"
+        android:layout_width="match_parent"
+        android:layout_height="6sp"
+        android:layout_below="@+id/password_input"
+        tools:ignore="SmallSp"
+        android:layout_marginTop="30sp"
+        android:background="@color/black"
+        />
+
+    <TextView
+        android:id="@+id/personal_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/divide_line_register"
+        android:layout_marginTop="30sp"
+        android:text="@string/personal_data"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/montserrat_bold"/>
+
+    <EditText
+        android:id="@+id/name_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/personal_data"
+        android:layout_marginTop="25sp"
+        android:ems="7"
+        android:layout_marginStart="25sp"
+        android:textSize="20sp"
+        android:fontFamily="@font/montserrat_bold"
+        android:hint="@string/name"/>
+
+    <EditText
+        android:id="@+id/surname_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/personal_data"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="25sp"
+        android:layout_marginTop="25sp"
+        android:ems="7"
+        android:textSize="20sp"
+        android:fontFamily="@font/montserrat_bold"
+        android:hint="@string/surname"/>
+
+    <EditText
+        android:id="@+id/middleName_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/name_input"
+        android:layout_centerInParent="true"
+        android:ems="8"
+        android:layout_marginTop="20sp"
+        android:textSize="20sp"
+        android:fontFamily="@font/montserrat_bold"
+        android:hint="@string/middleName"/>
+
+    <EditText
+        android:id="@+id/city_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/middleName_input"
+        android:layout_marginTop="30sp"
+        android:ems="7"
+        android:layout_marginStart="25sp"
+        android:textSize="20sp"
+        android:fontFamily="@font/montserrat_bold"
+        android:hint="@string/city"/>
+
+    <EditText
+        android:id="@+id/age_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/middleName_input"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="30sp"
+        android:ems="7"
+        android:layout_marginEnd="25sp"
+        android:textSize="20sp"
+        android:fontFamily="@font/montserrat_bold"
+        android:hint="@string/age"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/city_input"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="25sp">
+
+        <TextView
+            android:id="@+id/sex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="@color/black"
+            android:text="@string/sex"/>
+
+        <RadioGroup
+            android:id="@+id/sex_select"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/sex_male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:fontFamily="@font/montserrat_bold"
+                android:layout_marginStart="20sp"
+                android:textColor="@color/black"
+                android:text="@string/male"/>
+
+            <RadioButton
+                android:id="@+id/sex_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:layout_marginStart="20sp"
+                android:fontFamily="@font/montserrat_bold"
+                android:textColor="@color/black"
+                android:text="@string/female"/>
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="30sp"
+        android:fontFamily="@font/montserrat_bold"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:text="@string/register"/>
+
+</RelativeLayout>

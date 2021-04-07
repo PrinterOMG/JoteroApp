@@ -16,14 +16,10 @@ class MainActivity : AppCompatActivity() {
             val quizFeedIntent = Intent(this, QuizFeed::class.java)
             startActivity(quizFeedIntent)
         }
-        button_yes.setOnClickListener {
-            val quizFeedIntent = Intent(this, QuizFeed::class.java)
-            no_available_activity?.setVisibility(View.INVISIBLE)
-            startActivity(quizFeedIntent)
-        }
-        button_no.setOnClickListener {
-            val quizFeedIntent = Intent(this, QuizFeed::class.java)
-            startActivity(quizFeedIntent)
+
+        button_to_registration.setOnClickListener {
+            val registerIntent = Intent(this, Registration::class.java)
+            startActivity(registerIntent)
         }
     }
 }

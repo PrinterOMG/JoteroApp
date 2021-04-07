@@ -4,4 +4,17 @@
     <string name="available_quiz">Доступные опросы</string>
     <string name="yes">Да</string>
     <string name="no">Нет</string>
+    <string name="login_data">Данные для входа</string>
+    <string name="personal_data">Личные данные</string>
+    <string name="login">Логин</string>
+    <string name="password">Пароль</string>
+    <string name="name">Имя</string>
+    <string name="surname">Фамилия</string>
+    <string name="middleName">Отчество</string>
+    <string name="city">Город</string>
+    <string name="age">Возраст</string>
+    <string name="sex">Пол</string>
+    <string name="male">Мужской</string>
+    <string name="female">Женский</string>
+    <string name="register">Зарегестрироваться</string>
 </resources>
