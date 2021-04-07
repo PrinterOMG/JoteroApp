@@ -24,7 +24,7 @@
         android:id="@+id/available_quiz_body"/>
 
     <View
-        android:id="@+id/divide_line"
+        android:id="@+id/divide_line_feed"
         android:layout_width="fill_parent"
         android:layout_height="6sp"
         android:layout_below="@+id/available_quiz_body"
@@ -36,7 +36,7 @@
         android:id="@+id/completed_quiz"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/divide_line"
+        android:layout_below="@+id/divide_line_feed"
         android:layout_marginTop="30sp"
         android:fontFamily="@font/montserrat_bold"
         android:text="@string/completed_quiz"

@@ -15,5 +15,10 @@ class MainActivity : AppCompatActivity() {
             startActivity(quizFeedIntent)
         }
 
+        button_to_registration.setOnClickListener {
+            val registerIntent = Intent(this, Registration::class.java)
+            startActivity(registerIntent)
+        }
+
     }
 }
