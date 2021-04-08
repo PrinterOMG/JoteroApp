@@ -1,13 +1,23 @@
 package com.example.joteroapp
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_login.*
+import org.json.JSONObject
+import java.net.HttpURLConnection
+import java.net.URL
 
 class LoginActivity : AppCompatActivity() {
+
+    private var login = ""
+    private var password = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -32,8 +42,8 @@ class LoginActivity : AppCompatActivity() {
 
         button_login.setOnClickListener {
             if (checkEditText()) {
-                val login = new_login_input.text.toString()
-                val password = new_password_input.text.toString()
+                login = new_login_input.text.toString()
+                password = new_password_input.text.toString()
 
                 // Отправка запроса на сервер
             }
@@ -41,17 +51,12 @@ class LoginActivity : AppCompatActivity() {
 
         button_register.setOnClickListener {
             if (checkEditText()) {
-                val login = new_login_input.text.toString()
-                val password = new_password_input.text.toString()
+                login = new_login_input.text.toString()
+                password = new_password_input.text.toString()
 
-                // Добавить проверку что логин не занят
+                val url = "https://grixa230.pythonanywhere.com/check_login?login=$login"
+                AsyncTaskHandlerJson().execute(url)
 
-                val registerIntent = Intent(this, RegistrationActivity::class.java)
-                registerIntent.putExtra("login", login)
-                registerIntent.putExtra("password", password)
-                startActivity(registerIntent)
-
-                // Переход на страницу регестрации с передачей логина и пароля из текущего окна
             }
         }
 
@@ -72,4 +77,47 @@ class LoginActivity : AppCompatActivity() {
 
         return tempBool
     }
+
+    private fun checkLoginOnServer(result: String) {
+        val serverAnswer = JSONObject(result).getBoolean("result")
+
+        if (serverAnswer) {
+            val registerIntent = Intent(this, RegistrationActivity::class.java)
+            registerIntent.putExtra("login", login)
+            registerIntent.putExtra("password", password)
+            startActivity(registerIntent)
+        }
+        else {
+            new_login_input.setBackgroundResource(R.drawable.wrong_edit_text_style)
+            Toast.makeText(this, "Логин занят", Toast.LENGTH_SHORT)
+        }
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    inner class AsyncTaskHandlerJson: AsyncTask<String, String, String>() {
+        override fun doInBackground(vararg url: String?): String {
+            var text: String
+            val connection = URL(url[0]).openConnection() as HttpURLConnection
+
+            try {
+                connection.connect()
+                text = connection.inputStream.use { it.reader().use { reader -> reader.readText() } }
+            }
+            finally {
+                connection.disconnect()
+            }
+
+            return text
+        }
+
+        override fun onPostExecute(result: String?) {
+            super.onPostExecute(result)
+
+            if (result == null) return
+
+            if (JSONObject(result).has("result")) checkLoginOnServer(result)
+        }
+
+    }
+
 }
