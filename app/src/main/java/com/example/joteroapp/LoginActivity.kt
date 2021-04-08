@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.Gravity
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_login.*
 import org.json.JSONObject
@@ -89,7 +90,10 @@ class LoginActivity : AppCompatActivity() {
         }
         else {
             new_login_input.setBackgroundResource(R.drawable.wrong_edit_text_style)
-            Toast.makeText(this, "Логин занят", Toast.LENGTH_SHORT)
+
+            val toast = Toast.makeText(this, "Логин занят", Toast.LENGTH_LONG)
+            toast.setGravity(Gravity.CENTER, 0, 0)
+            toast.show()
         }
     }
 
