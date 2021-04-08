@@ -11,6 +11,8 @@ import android.view.Gravity
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_login.*
 import org.json.JSONObject
+import java.lang.Exception
+import java.lang.NullPointerException
 import java.net.HttpURLConnection
 import java.net.URL
 
@@ -26,8 +28,10 @@ class LoginActivity : AppCompatActivity() {
         new_login_input.addTextChangedListener(object : TextWatcher {  // Делает зеленую обводку при изменении текста в поле ввода логина
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) { }
 
-            // Нужно добавить проверку недопустимых символов
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) { new_login_input.setBackgroundResource(R.drawable.correct_edit_text_style) }
+            // Смысла нет делать тут валидацию
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                new_login_input.setBackgroundResource(R.drawable.correct_edit_text_style)
+            }
 
             override fun afterTextChanged(s: Editable?) { }
         })
@@ -35,8 +39,10 @@ class LoginActivity : AppCompatActivity() {
         new_password_input.addTextChangedListener(object : TextWatcher {  // Делает зеленую обводку при изменении текста в поле ввода пароля
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) { }
 
-            // Нужно добавить проверку недопустимых символов
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) { new_password_input.setBackgroundResource(R.drawable.correct_edit_text_style) }
+            // Смысла нет делать тут валидацию
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                new_password_input.setBackgroundResource(R.drawable.correct_edit_text_style)
+            }
 
             override fun afterTextChanged(s: Editable?) { }
         })
@@ -47,6 +53,7 @@ class LoginActivity : AppCompatActivity() {
                 password = new_password_input.text.toString()
 
                 // Отправка запроса на сервер
+                // пустота
             }
         }
 
@@ -65,13 +72,15 @@ class LoginActivity : AppCompatActivity() {
 
     private fun checkEditText(): Boolean { // Если с введёнными данными всё ок то true, иначе false
         var tempBool = true
-
-        if (new_login_input.length() == 0) { // Нужно добавить недопустимые символы в проверку
+        val letters_up = Array<Char>(26) { i -> ('A' + i) }
+        val letters_down = Array<Char>(26) { i -> ('a' + i) }
+        val letters = letters_down + letters_up
+        if (new_login_input.length() == 0 || !(letters.contains(new_login_input.text[0])) || new_login_input.length() > 20) { // Проверяю что первый символ это буква и длину до 20
             new_login_input.setBackgroundResource(R.drawable.wrong_edit_text_style)
             tempBool = false
         }
 
-        if (new_password_input.length() == 0) {  // Нужно добавить недопустимые символы в проверку
+        if (new_password_input.length() == 0 || !(letters.contains(new_password_input.text[0])) || new_password_input.length() > 20) {  // Проверяю что первый символ это буква и длину до 20
             new_password_input.setBackgroundResource(R.drawable.wrong_edit_text_style)
             tempBool = false
         }
