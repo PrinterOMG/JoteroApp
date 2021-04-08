@@ -33,7 +33,12 @@
             android:fontFamily="@font/montserrat_bold"
             android:hint="@string/name"
             android:inputType="textPersonName"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:background="@drawable/correct_edit_text_style"
+            android:paddingStart="10sp"
+            android:paddingTop="5sp"
+            android:paddingEnd="10sp"
+            android:paddingBottom="5sp"/>
 
         <EditText
             android:id="@+id/surname_input"
@@ -47,7 +52,12 @@
             android:fontFamily="@font/montserrat_bold"
             android:hint="@string/surname"
             android:inputType="textPersonName"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:background="@drawable/correct_edit_text_style"
+            android:paddingStart="10sp"
+            android:paddingTop="5sp"
+            android:paddingEnd="10sp"
+            android:paddingBottom="5sp"/>
 
         <EditText
             android:id="@+id/middleName_input"
@@ -60,7 +70,12 @@
             android:fontFamily="@font/montserrat_bold"
             android:hint="@string/middleName"
             android:inputType="textPersonName"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:background="@drawable/correct_edit_text_style"
+            android:paddingStart="10sp"
+            android:paddingTop="5sp"
+            android:paddingEnd="10sp"
+            android:paddingBottom="5sp"/>
 
         <EditText
             android:id="@+id/city_input"
@@ -73,7 +88,12 @@
             android:fontFamily="@font/montserrat_bold"
             android:hint="@string/city"
             android:inputType="textPersonName"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:background="@drawable/correct_edit_text_style"
+            android:paddingStart="10sp"
+            android:paddingTop="5sp"
+            android:paddingEnd="10sp"
+            android:paddingBottom="5sp"/>
 
         <EditText
             android:id="@+id/age_input"
@@ -87,9 +107,15 @@
             android:fontFamily="@font/montserrat_bold"
             android:hint="@string/age"
             android:inputType="number"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:background="@drawable/correct_edit_text_style"
+            android:paddingStart="10sp"
+            android:paddingTop="5sp"
+            android:paddingEnd="10sp"
+            android:paddingBottom="5sp"/>
 
         <LinearLayout
+            android:id="@+id/sex_select_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -135,6 +161,17 @@
             </RadioGroup>
 
         </LinearLayout>
+
+        <Button
+            android:id="@+id/button_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/sex_select_layout"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="30sp"
+            android:text="@string/register"
+            android:textSize="20sp"
+            android:fontFamily="@font/montserrat_bold"/>
 
     </RelativeLayout>
 
