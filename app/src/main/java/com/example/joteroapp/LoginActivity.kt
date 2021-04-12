@@ -1,6 +1,7 @@
 package com.example.joteroapp
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
@@ -11,19 +12,28 @@ import android.view.Gravity
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_login.*
 import org.json.JSONObject
-import java.lang.Exception
-import java.lang.NullPointerException
 import java.net.HttpURLConnection
 import java.net.URL
 
 class LoginActivity : AppCompatActivity() {
 
-    private var login = ""
-    private var password = ""
+    private var login: String? = ""
+    private var password: String? = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        val loginDataPreferences = getSharedPreferences("login_data", Context.MODE_PRIVATE)
+
+        if (loginDataPreferences.contains("login") && loginDataPreferences.contains("password")) {
+            login = loginDataPreferences.getString("login", "") // defValue це значение по умолчанию, то есть оно никогда не должно подставиться ибо я сделал проверку
+            password = loginDataPreferences.getString("password", "")
+
+            val url = "https://grixa230.pythonanywhere.com/login?login=$login&password=$password"
+            // Запросик на сервер тута
+        }
+
 
         new_login_input.addTextChangedListener(object : TextWatcher {  // Делает зеленую обводку при изменении текста в поле ввода логина
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) { }
@@ -72,9 +82,9 @@ class LoginActivity : AppCompatActivity() {
 
     private fun checkEditText(): Boolean { // Если с введёнными данными всё ок то true, иначе false
         var tempBool = true
-        val letters_up = Array<Char>(26) { i -> ('A' + i) }
-        val letters_down = Array<Char>(26) { i -> ('a' + i) }
-        val letters = letters_down + letters_up
+        val lettersUp = Array(26) { i -> ('A' + i) }
+        val lettersDown = Array(26) { i -> ('a' + i) }
+        val letters = lettersDown + lettersUp
         if (new_login_input.length() == 0 || !(letters.contains(new_login_input.text[0])) || new_login_input.length() > 20) { // Проверяю что первый символ это буква и длину до 20
             new_login_input.setBackgroundResource(R.drawable.wrong_edit_text_style)
             tempBool = false
@@ -109,7 +119,7 @@ class LoginActivity : AppCompatActivity() {
     @SuppressLint("StaticFieldLeak")
     inner class AsyncTaskHandlerJson: AsyncTask<String, String, String>() {
         override fun doInBackground(vararg url: String?): String {
-            var text: String
+            val text: String
             val connection = URL(url[0]).openConnection() as HttpURLConnection
 
             try {
@@ -121,6 +131,13 @@ class LoginActivity : AppCompatActivity() {
             }
 
             return text
+        }
+
+        override fun onPreExecute() {
+            super.onPreExecute()
+
+            val serverRequestToast = Toast.makeText(this@LoginActivity, "Получение данных с сервера...", Toast.LENGTH_SHORT)
+            serverRequestToast.show()
         }
 
         override fun onPostExecute(result: String?) {

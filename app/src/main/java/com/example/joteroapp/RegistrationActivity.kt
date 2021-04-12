@@ -1,13 +1,23 @@
 package com.example.joteroapp
 
+import android.annotation.SuppressLint
+import android.content.Context
+import android.content.SharedPreferences
+import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_registration.*
+import org.json.JSONObject
+import java.net.HttpURLConnection
+import java.net.URL
 
-class RegistrationActivity : AppCompatActivity() {
+abstract class RegistrationActivity : AppCompatActivity() {
+    var login:String? = ""
+    var password:String? = ""
     var name = ""
     var surname = ""
     var middleName = ""
@@ -21,8 +31,8 @@ class RegistrationActivity : AppCompatActivity() {
 
         val registerIntent = intent
 
-        val login = registerIntent.getStringExtra("login")
-        val password = registerIntent.getStringExtra("password")
+        login = registerIntent.getStringExtra("login")
+        password = registerIntent.getStringExtra("password")
 
         Log.d("check", "$login, $password") // Проверил, работаить
 
@@ -30,7 +40,8 @@ class RegistrationActivity : AppCompatActivity() {
             if (inputDataCheck()) {
                 val url = "https://grixa230.pythonanywhere.com/register?login=$login&password=$password&name=$name&surname=$surname&middleName=$middleName&age=$age&city=$city&sex=$sex"
 
-                Log.d("checker", "Отправка запросика на сервер")
+                // Запросик пока выключил, ибо не тестил
+                // AsyncTaskHandlerJson().execute(url)
             }
         }
 
@@ -67,7 +78,7 @@ class RegistrationActivity : AppCompatActivity() {
 
     }
 
-    fun inputDataCheck(): Boolean {
+    private fun inputDataCheck(): Boolean {
         var tempBool = true
 
         if (name_input.length() == 0) {
@@ -109,6 +120,51 @@ class RegistrationActivity : AppCompatActivity() {
         }
 
         return tempBool
+    }
+
+    private fun finalRegister(result: String) {
+        if (JSONObject(result).getBoolean("register_result")) {
+            val loginDataPreferences = getSharedPreferences("login_data", Context.MODE_PRIVATE)
+            val editor = loginDataPreferences.edit()
+            editor.putString("login", login)
+            editor.putString("password", password)
+            editor.apply()
+        }
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    inner class AsyncTaskHandlerJson: AsyncTask<String, String, String>() {
+        override fun doInBackground(vararg url: String?): String {
+            val text: String
+            val connection = URL(url[0]).openConnection() as HttpURLConnection
+
+            try {
+                connection.connect()
+                text = connection.inputStream.use { it.reader().use { reader -> reader.readText() } }
+            }
+            finally {
+                connection.disconnect()
+            }
+
+            return text
+        }
+
+        override fun onPreExecute() {
+            super.onPreExecute()
+
+            val serverRequestToast = Toast.makeText(this@RegistrationActivity, "Получение данных с сервера...", Toast.LENGTH_SHORT)
+            serverRequestToast.show()
+        }
+
+        override fun onPostExecute(result: String?) {
+            super.onPostExecute(result)
+
+            if (result == null) return
+
+            if (JSONObject(result).has("register_result")) finalRegister(result)
+
+        }
+
     }
 
 }

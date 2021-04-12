@@ -15,11 +15,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(quizFeedIntent)
         }
 
-        button_to_registration.setOnClickListener {
-            val registerIntent = Intent(this, RegistrationActivity::class.java)
-            startActivity(registerIntent)
-        }
-
         button_to_login.setOnClickListener {
             val loginIntent = Intent(this, LoginActivity::class.java)
             startActivity(loginIntent)
