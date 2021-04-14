@@ -19,5 +19,15 @@ class MainActivity : AppCompatActivity() {
             val loginIntent = Intent(this, LoginActivity::class.java)
             startActivity(loginIntent)
         }
+
+        button_no.setOnClickListener {
+            val quizFeedIntent = Intent(this, QuizFeedActivity::class.java)
+            startActivity(quizFeedIntent)
+        }
+
+        button_yes.setOnClickListener {
+            val quizFeedIntent = Intent(this, QuizFeedActivity::class.java)
+            startActivity(quizFeedIntent)
+        }
     }
 }

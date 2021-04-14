@@ -38,7 +38,6 @@ class LoginActivity : AppCompatActivity() {
         new_login_input.addTextChangedListener(object : TextWatcher {  // Делает зеленую обводку при изменении текста в поле ввода логина
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) { }
 
-            // Смысла нет делать тут валидацию
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 new_login_input.setBackgroundResource(R.drawable.correct_edit_text_style)
             }
@@ -49,7 +48,6 @@ class LoginActivity : AppCompatActivity() {
         new_password_input.addTextChangedListener(object : TextWatcher {  // Делает зеленую обводку при изменении текста в поле ввода пароля
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) { }
 
-            // Смысла нет делать тут валидацию
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 new_password_input.setBackgroundResource(R.drawable.correct_edit_text_style)
             }
@@ -62,8 +60,7 @@ class LoginActivity : AppCompatActivity() {
                 login = new_login_input.text.toString()
                 password = new_password_input.text.toString()
 
-                // Отправка запроса на сервер
-                // пустота
+                // Пока не обрабатывается
             }
         }
 
@@ -90,7 +87,7 @@ class LoginActivity : AppCompatActivity() {
             tempBool = false
         }
 
-        if (new_password_input.length() == 0 || !(letters.contains(new_password_input.text[0])) || new_password_input.length() > 20) {  // Проверяю что первый символ это буква и длину до 20
+        if (new_password_input.length() == 0 || new_password_input.length() > 20) {  // Проверяю длину от 0 до 20
             new_password_input.setBackgroundResource(R.drawable.wrong_edit_text_style)
             tempBool = false
         }

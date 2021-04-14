@@ -2,6 +2,7 @@ package com.example.joteroapp
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
@@ -24,6 +25,7 @@ class RegistrationActivity : AppCompatActivity() {
     var city = ""
     var age = 0
     var sex = ""
+    var reg = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,9 +42,21 @@ class RegistrationActivity : AppCompatActivity() {
             if (inputDataCheck()) {
                 val url = "https://grixa230.pythonanywhere.com/register?login=$login&password=$password&name=$name&surname=$surname&middleName=$middleName&age=$age&city=$city&sex=$sex"
 
-                // Запросик пока выключил, ибо не тестил
-                // AsyncTaskHandlerJson().execute(url)
+                // Запросик пока выключил, ибо не тестил| включил тк я бешенный
+                AsyncTaskHandlerJson().execute(url)
             }
+        }
+
+        button_quiz.setOnClickListener {
+            reg = true
+            if (reg){
+                val toQuizIntent = Intent(this, QuizFeedActivity::class.java)
+                startActivity(toQuizIntent)
+            } else{
+                val serverRequestToast = Toast.makeText(this@RegistrationActivity, "Вы не завершили регистрацию", Toast.LENGTH_SHORT)
+                serverRequestToast.show()
+            }
+
         }
 
         name_input.addTextChangedListener(object : TextWatcher {
@@ -151,8 +165,8 @@ class RegistrationActivity : AppCompatActivity() {
 
         override fun onPreExecute() {
             super.onPreExecute()
-
-            val serverRequestToast = Toast.makeText(this@RegistrationActivity, "Получение данных с сервера...", Toast.LENGTH_SHORT)
+            reg = true
+            val serverRequestToast = Toast.makeText(this@RegistrationActivity, "Регистрация успешно завершена", Toast.LENGTH_SHORT)
             serverRequestToast.show()
         }
 
@@ -162,6 +176,7 @@ class RegistrationActivity : AppCompatActivity() {
             if (result == null) return
 
             if (JSONObject(result).has("register_result")) finalRegister(result)
+
 
         }
 
